@@ -1,0 +1,25 @@
+# Web framework
+fastapi==0.111.0
+uvicorn[standard]==0.30.1
+pydantic==2.7.3
+pydantic-settings==2.3.1
+
+# GitHub App authentication
+PyJWT[crypto]==2.8.0
+httpx==0.27.0
+
+# AI / LangChain
+openai==1.35.3
+langchain==0.2.5
+langchain-openai==0.1.13
+langchain-community==0.2.5
+
+# AWS Lambda adapter
+mangum==0.17.0
+
+# AWS SDK
+boto3==1.34.136
+
+# Utilities
+python-dotenv==1.0.1
+cryptography==42.0.8

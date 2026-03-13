@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  bot:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    environment:
+      - DEBUG=true
+      - LOG_LEVEL=DEBUG
+    volumes:
+      - ../app:/app/app  # hot-reload in dev
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Optional: expose via ngrok for local GitHub webhook testing
+  ngrok:
+    image: ngrok/ngrok:latest
+    command: http bot:8000 --log=stdout
+    ports:
+      - "4040:4040"
+    environment:
+      - NGROK_AUTHTOKEN=${NGROK_AUTHTOKEN:-}
+    depends_on:
+      - bot
+    profiles:
+      - ngrok  # start with: docker compose --profile ngrok up
+
+networks:
+  default:
+    name: code-review-bot-net
