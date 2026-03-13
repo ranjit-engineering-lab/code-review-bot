@@ -1,6 +1,6 @@
 # Intelligent Code Review Bot
 
-Automated GitHub PR reviews powered by GPT-4, LangChain, and FastAPI — deployed as a GitHub App running on AWS Lambda or Docker.
+Automated GitHub PR reviews powered by GPT-4, LangChain, and FastAPI : deployed as a GitHub App running on AWS Lambda or Docker.
 
 The bot performs **three parallel review passes** on every PR:
 - **Security** — injections, hardcoded secrets, weak crypto, missing auth
